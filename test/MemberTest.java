@@ -1,9 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MemberTest {
     Member mb = new Member();
@@ -39,14 +38,16 @@ class MemberTest {
     //Kollar om medlemskapet är inom 1 år. Jämför med dagens datum. Returnerar medlem eller tidigare medlem
     @Test
     public void compareDate() {
-        String test1 = "2023-07-01";
-        String test2 = "2015-05-13";
-        String test3 = "2001-05-13";
-        String test4 = "2005-05-05";
+        LocalDate currentDate1 = LocalDate.now();
+        LocalDate DateSixMonthsAgo = currentDate1.minusMonths(6);
+        String Test1 = DateSixMonthsAgo.toString();
+        System.out.println(Test1);
 
-        assert (mb.compareDate(test1).equals(Membership.CURRENTMEMBER));
-        assert (mb.compareDate(test2).equals(Membership.PREVIOUSMEMBER));
-        assert (mb.compareDate(test3).equals(Membership.PREVIOUSMEMBER));
-        assert (!mb.compareDate(test4).equals(Membership.CURRENTMEMBER));
+        LocalDate currentDate2 = LocalDate.now();
+        LocalDate DateTwentyMonthsAgo = currentDate2.minusMonths(20);
+        String Test2 = DateTwentyMonthsAgo.toString();
+
+        assert (mb.compareDate(Test1).equals(Membership.CURRENTMEMBER));
+        assert (mb.compareDate(Test2).equals(Membership.PREVIOUSMEMBER));
     }
 }

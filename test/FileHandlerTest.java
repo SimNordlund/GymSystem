@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -52,6 +53,7 @@ class FileHandlerTest {
         String tempTestLine1 = null;
         String tempTestLine2 = null;
         List<String> memberList = new ArrayList<>();
+
         try {
             BufferedReader buf = new BufferedReader(new
                     FileReader(String.valueOf(fh.getPathWriter())));
@@ -66,8 +68,8 @@ class FileHandlerTest {
                     tempTestLine2 = s;
                 }
             }
-            assert (Objects.equals(tempTestLine1,"Personnummer: 9401021337, Namn: Sören Salami. Tränade: 2023-10-20.")); //Hanterar eventuellt NullPointException med Objects.equals.
-            assert (Objects.equals(tempTestLine2,"Personnummer: 9512116666, Namn: Ernst Holm. Tränade: 2023-10-20."));
+            assert (Objects.equals(tempTestLine1,"Personnummer: 9401021337, Namn: Sören Salami. Tränade: " + LocalDate.now() + ".")); //Hanterar eventuellt NullPointException med Objects.equals.
+            assert (Objects.equals(tempTestLine2,"Personnummer: 9512116666, Namn: Ernst Holm. Tränade: " + LocalDate.now() + "."));
         }
         catch (IOException e) {
             System.out.println("I/O Fel");
